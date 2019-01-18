@@ -95,6 +95,11 @@
 .md-tabs {
     background-image: url(../assets/images/second-nav-blue.png);
     background-color: #1f4e79 !important;
+    padding-top: 20px;
+}
+
+.md-tabs__list {
+    display:none;
 }
 
 .md-tabs__item {
