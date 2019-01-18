@@ -6,7 +6,7 @@ In the first module you will be configuring detective and responsive controls fo
 
 To initiate the scenario and configure your environment you will need to run the module 1 CloudFormation template: 
 
-!!! info "Before you deploy the CloudFormation template you can view it in the <a href="" target="_blank">repo</a href>."
+!!! info "Before you deploy the CloudFormation template you can view it in the <a href="https://github.com/aws-samples/aws-scaling-threat-detection-workshop/blob/master/templates/01-environment-setup.yml" target="_blank">repo</a href>."
 
 Region| Deploy
 ------|-----
