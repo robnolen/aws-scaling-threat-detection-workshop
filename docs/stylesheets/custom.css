@@ -92,9 +92,11 @@
 
 /* Second Navigation */
 
-.md-tabs {
+.md-divider {
     background-image: url(../assets/images/second-nav-blue.png);
     background-color: #1f4e79 !important;
+    width: 100%;
+    line-height: 3rem;
 }
 
 .md-tabs__item {
