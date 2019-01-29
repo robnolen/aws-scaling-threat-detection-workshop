@@ -11,7 +11,7 @@ Now that you have detective and responsive controls setup, you'll be running ano
 
 To initiate the attack simulation you will need to run the module 2 CloudFormation template: 
 
-!!! info "Before you deploy the CloudFormation template you can view it in the <a href="https://github.com/aws-samples/aws-scaling-threat-detection-workshop/blob/master/templates/02-attack-simulation.yml" target="_blank">repo</a href>."
+!!! info "Before you deploy the CloudFormation template feel free to view it <a href="https://github.com/aws-samples/aws-scaling-threat-detection-workshop/blob/master/templates/02-attack-simulation.yml" target="_blank">repo</a href>."
 
 Region| Deploy
 ------|-----
@@ -29,12 +29,13 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 ![Stack Complete](./images/02-stack-complete.png)
 
-## Threat detection and response presentation
+## Architecture overview
 
 Below is a diagram of the setup after the module 2 CloudFormation stack is created.
 
 ![Module 2 Diagram](./images/02-diagram-module2-3.png)
 
-> If you are going through this workshop in a classroom setting then wait till the presentation is over before starting module 3 (the presentation will allow enough time to pass for the attack scenario to complete.)  
-> 
-> If you are going through this workshop outside of a classroom setting you can proceed to Module 3.  Please note it will take at least **20 minutes** after the 2nd CloudFormation template has completed before you will start seeing findings. 
+!!! warning "Threat detection and response presentation"
+    **AWS Sponsored Event**: If you are going through this workshop in a classroom setting then wait till the presentation is over before starting module 3 (the presentation will allow enough time to pass for the attack scenario to complete.)
+
+    **Individual**: If you are going through this workshop outside of a classroom setting you can proceed to Module 3.  Please note it will take at least **20 minutes** after the 2nd CloudFormation template has completed before you will start seeing findings.

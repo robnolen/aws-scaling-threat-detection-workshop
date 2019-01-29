@@ -6,7 +6,7 @@ In the first module you will be configuring detective and responsive controls fo
 
 To initiate the scenario and configure your environment you will need to run the module 1 CloudFormation template: 
 
-!!! info "Before you deploy the CloudFormation template you can view it in the <a href="https://github.com/aws-samples/aws-scaling-threat-detection-workshop/blob/master/templates/01-environment-setup.yml" target="_blank">repo</a href>."
+!!! info "Before you deploy the CloudFormation template feel free to view it <a href="https://github.com/aws-samples/aws-scaling-threat-detection-workshop/blob/master/templates/01-environment-setup.yml" target="_blank">here</a href>."
 
 Region| Deploy
 ------|-----
@@ -42,7 +42,7 @@ Below are steps to create this rule through the console but you can also find ou
 1.	Open the <a href="https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2" target="_blank">CloudWatch console</a> (us-west-2)
 2.	In the navigation pane on the left, under **Events**, click **Rules**
 
-	> What are the current Rules in place setup to do?
+	!!! question "What are the current Rules in place setup to do?"
 	
 3.	Click **Create Rule**
 
@@ -70,9 +70,7 @@ For *Targets*, click **Add Target**, select **Lambda Function**, and then select
 6. Click **Create rule**.
 7.	**Optional:** Consider examining the Lambda function to see what it does.  Open the <a href="https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2" target="_blank">Lambda console</a>. Click on the function named **threat-detection-wksp-remediation-nacl**
 
-	> What will the function do when invoked?
-
-	> What will the **threat-detection-wksp-remediation-inspector** functions do?
+    !!! question "What will the function do when invoked?"
 
 ## Enable Amazon GuardDuty
 
