@@ -602,7 +602,7 @@
 <h2 id="deploy-the-aws-cloudformation-template">Deploy the AWS CloudFormation template</h2>
 <p>To initiate the scenario and configure your environment you will need to run the module 1 CloudFormation template: </p>
 <div class="admonition info">
-<p class="admonition-title">Before you deploy the CloudFormation template you can view it in the <a href="https://github.com/aws-samples/aws-scaling-threat-detection-workshop/blob/master/templates/01-environment-setup.yml" target="_blank">repo</a href>.</p>
+<p class="admonition-title">Before you deploy the CloudFormation template feel free to view it <a href="https://github.com/aws-samples/aws-scaling-threat-detection-workshop/blob/master/templates/01-environment-setup.yml" target="_blank">here</a href>.</p>
 </div>
 <table>
 <thead>
@@ -661,9 +661,9 @@
 <li>Open the <a href="https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2" target="_blank">CloudWatch console</a> (us-west-2)</li>
 <li>
 <p>In the navigation pane on the left, under <strong>Events</strong>, click <strong>Rules</strong></p>
-<blockquote>
-<p>What are the current Rules in place setup to do?</p>
-</blockquote>
+<div class="admonition question">
+<p class="admonition-title">What are the current Rules in place setup to do?</p>
+</div>
 </li>
 <li>
 <p>Click <strong>Create Rule</strong></p>
@@ -696,10 +696,9 @@ Copy and paste in the custom event pattern below:</p>
 <li>Click <strong>Create rule</strong>.</li>
 <li>
 <p><strong>Optional:</strong> Consider examining the Lambda function to see what it does.  Open the <a href="https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2" target="_blank">Lambda console</a>. Click on the function named <strong>threat-detection-wksp-remediation-nacl</strong></p>
-<blockquote>
-<p>What will the function do when invoked?</p>
-<p>What will the <strong>threat-detection-wksp-remediation-inspector</strong> functions do?</p>
-</blockquote>
+<div class="admonition question">
+<p class="admonition-title">What will the function do when invoked?</p>
+</div>
 </li>
 </ol>
 <h2 id="enable-amazon-guardduty">Enable Amazon GuardDuty</h2>
