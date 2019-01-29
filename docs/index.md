@@ -16,6 +16,8 @@ Your company is new to the cloud and has recently performed a lift-and-shift of 
 
 For this Workshop you will have a single instance setup in the us-west-2 region. As this was a “lift-and-shift” migration for piloting, you have yet to build redundancy into your application, so you have a single public-facing web server. The web server has access to the Internet Gateway through an Elastic Network Interface. Customers access your web server through a DNS entry pointing to the Elastic Network Interface. You store static content in an S3 bucket and use the VPC S3 Endpoint Gateway for access from the web server.
 
+For this Workshop you will have a simple setup with a single instance setup in the us-west-2 region. As this was a “lift-and-shift” migration for piloting, you have yet to build redundancy into your application, so you have a single public-facing web server that is accessed through an internet gateway and retrieves static content from an S3 bucket.
+
 ![Architecture](./images/diagram-basic-arch.png "Workload Architecture")
 
 ## Presentation deck
@@ -25,6 +27,9 @@ For this Workshop you will have a single instance setup in the us-west-2 region.
 Please use the **us-west-2 (Oregon)** region for this workshop.
 
 ## Modules
+
+This workshop is broken up into the four modules below: 
+
 1. [Environment Build and Configuration](./01-environment-setup.md)
 2. [Attack Simulation](./02-attack-simulation.md) 
 3. [Detection and Remediation](./03-detection-and-remediation.md) 
