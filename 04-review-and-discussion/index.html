@@ -556,7 +556,7 @@
                 
                 
                 <h1 id="module-4-review-and-discussion">Module 4: Review and Discussion</h1>
-<p>In the last module we will have a short discussion of the workshop (and discuss exactly what occurred.) We will also go over a number of questions and then provide instructions on how to clean up the workshop environment (to prevent future charges in your AWS account.) </p>
+<p>In the last module we will have a short discussion of the workshop and discuss exactly what occurred. We will also go over a number of questions and then provide instructions on how to clean up the workshop environment to prevent future charges in your AWS account.</p>
 <p><strong>Agenda</strong></p>
 <ol>
 <li>Review &amp; Discussion – 10 min</li>
@@ -564,7 +564,7 @@
 <li>Cleanup – 5 min</li>
 </ol>
 <h2 id="architecture-overview">Architecture Overview</h2>
-<p>Diagram of the overall workshop setup:
+<p>Below is a diagram of the overall workshop setup:
 <img alt="Part 1 Diagram" src="../images/04-diagram-module4.png" /></p>
 <h2 id="what-is-really-going-on">What is Really Going On?</h2>
 <p>In <strong>Module 1</strong> of the workshop you setup the initial components of your infrastructure including GuardDuty, Macie and a simple notification and remediation pipeline. Some of the steps required manual configuration but you also ran a CloudFormation template which setup some of the components. In <strong>Module 2</strong> you launched a second CloudFormation template that initiated the attack simulated by this workshop. The CloudFormation template created two EC2 instances. One instance (named <strong>Malicious Host</strong>) had an EIP attached to it that was added to your GuardDuty custom threat list. Although the <strong>Malicious Host</strong> is in the same VPC as the other instance, for the sake of the scenario (and to prevent the need to submit a penetration testing request) we acted as if it is on the Internet and represented the attack's computer. The other instance (named <strong>Compromised Instance</strong>) was your web server and it was taken over by the <strong>Malicious Host</strong>. In <strong>Module 3</strong> you investigated the attack, remediated the damage, and setup some automated remediations for future attacks.  </p>
@@ -574,41 +574,37 @@
 <p>There are two instances created by the Module 2 CloudFormation template. They are in the same VPC but different subnets. The <strong>Malicious Host</strong> represents the attacker which we pretend is on the Internet. The Elastic IP on the <strong>Malicious Host</strong> is in a custom threat list in GuardDuty. The other instance named <strong>Compromised Instance</strong> represents the web server that was lifted and shifted into AWS.</p>
 </li>
 <li>
-<p>Although company policy is that only key-based authentication should be enabled for SSH, at some point password authentication for SSH was enabled on the <strong>Compromised Instance</strong>.  </p>
-<blockquote>
-<p>This misconfiguration is identified in the Inspector scan that is triggered from the GuardDuty finding.</p>
-</blockquote>
+<p>Although company policy is that only key-based authentication should be enabled for SSH, at some point password authentication for SSH was enabled on the <strong>Compromised Instance</strong>.  This misconfiguration is identified in the Inspector scan that is triggered from the GuardDuty finding.</p>
 </li>
 <li>
 <p>The <strong>Malicious Host</strong> performed a brute force SSH password attack against the <strong>Compromised Instance</strong>. The brute force attack is designed to be successful.</p>
-<blockquote>
-<p><strong>GuardDuty Finding</strong>: UnauthorizedAccess:EC2/SSHBruteForce</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title"><strong>GuardDuty Finding</strong>: UnauthorizedAccess:EC2/SSHBruteForce</p>
+</div>
 </li>
 <li>
 <p>The SSH brute force attack was successful and the attacker was able to log in to the <strong>Compromised Instance</strong>.</p>
-<blockquote>
-<p>Successful login is confirmed in CloudWatch Logs (/threat-detection-wksp/var/log/secure).</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title">Successful login is confirmed in CloudWatch Logs (/threat-detection-wksp/var/log/secure).</p>
+</div>
 </li>
 <li>
 <p>The EC2 Instance that is created in the Module 2 CloudFormation template disabled default encryption on the <strong>Data</strong> bucket.  In addition the CloudFormation template made the <strong>Data</strong> bucket public.  This is used for the Macie part of the investigation in Module 3. We pretend that the attacker made the bucket public and removed the default encryption from the bucket.</p>
-<blockquote>
-<p><strong>Macie Alert</strong>: S3 Bucket IAM policy grants global read rights</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title"><strong>Macie Alert</strong>: S3 Bucket IAM policy grants global read rights.</p>
+</div>
 </li>
 <li>
 <p>The Compromised Instance also has a cron job that continuously pings the Malicious Host to generate a GuardDuty finding based off the custom threat list.</p>
-<blockquote>
-<p><strong>GuardDuty Finding</strong>: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title"><strong>GuardDuty Finding</strong>: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom</p>
+</div>
 </li>
 <li>
 <p>The API Calls that generated the API findings come from the <strong>Malicious Host</strong>. The calls use the temp creds from the IAM role for EC2 running on the <strong>Malicious Host</strong>. The GuardDuty findings are generated because the EIP attached to the <strong>Malicious Host</strong> is in a custom threat list. </p>
-<blockquote>
-<p><strong>GuardDuty Finding</strong>: Recon:IAMUser/MaliciousIPCaller.Custom</p>
-<p><strong>GuardDuty Finding</strong>: UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title"><strong>GuardDuty Finding</strong>: Recon:IAMUser/MaliciousIPCaller.Custom or <strong>GuardDuty Finding</strong>: UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom</p>
+</div>
 </li>
 <li>
 <p>A number of CloudWatch Events Rules are evoked by the GuardDuty findings and then these trigger various services.</p>
@@ -622,9 +618,9 @@
 </ol>
 <h2 id="cleanup">Cleanup</h2>
 <p>In order to prevent charges to your account we recommend cleaning up the infrastructure that was created. If you plan to keep things running so you can examine the workshop a bit more please remember to do the cleanup when you are done. It is very easy to leave things running in an AWS account, forgot about it, and then accrue charges. </p>
-<blockquote>
-<p>You will need to manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order.</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title">You will need to manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order.</p>
+</div>
 <ol>
 <li>
 <p>Delete the Inspector objects created for the workshop.</p>
@@ -663,9 +659,9 @@
 <li>Click <strong>Delete Stack</strong>.</li>
 <li>Repeat the steps above for each stack.</li>
 </ul>
-<blockquote>
-<p>You do not need to wait for the first stack to delete before you delete the second one.</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title">You do not need to wait for the first stack to delete before you delete the second one.</p>
+</div>
 </li>
 <li>
 <p>Delete the GuardDuty custom threat list and disable GuardDuty (if you didn't already have it configured before the workshop)</p>
@@ -721,9 +717,9 @@
 <li>In the upper right-hand corner select the down arrow to the left of the Region and select <strong>Macie General Settings</strong>.</li>
 <li>Check the two boxes and click <strong>Disable Amazon Macie</strong></li>
 </ul>
-<blockquote>
-<p>Disabling Macie will actually log you out of the AWS Console so you will need to log back to do any other tasks.</p>
-</blockquote>
+<div class="admonition info">
+<p class="admonition-title">Disabling Macie will actually log you out of the AWS Console so you will need to log back to do any other tasks.</p>
+</div>
 </li>
 </ol>
 <h2 id="finished">Finished!</h2>
