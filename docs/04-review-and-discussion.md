@@ -1,6 +1,6 @@
 # Module 4: Review and Discussion
 
-In the last module we will have a short discussion of the workshop (and discuss exactly what occurred.) We will also go over a number of questions and then provide instructions on how to clean up the workshop environment (to prevent future charges in your AWS account.) 
+In the last module we will have a short discussion of the workshop and discuss exactly what occurred. We will also go over a number of questions and then provide instructions on how to clean up the workshop environment to prevent future charges in your AWS account.
 
 **Agenda**
 
@@ -9,7 +9,7 @@ In the last module we will have a short discussion of the workshop (and discuss 
 3. Cleanup – 5 min
 
 ## Architecture Overview
-Diagram of the overall workshop setup:
+Below is a diagram of the overall workshop setup:
 ![Part 1 Diagram](./images/04-diagram-module4.png)
 
 ## What is Really Going On?
@@ -20,31 +20,27 @@ In **Module 1** of the workshop you setup the initial components of your infrast
 
 1. There are two instances created by the Module 2 CloudFormation template. They are in the same VPC but different subnets. The **Malicious Host** represents the attacker which we pretend is on the Internet. The Elastic IP on the **Malicious Host** is in a custom threat list in GuardDuty. The other instance named **Compromised Instance** represents the web server that was lifted and shifted into AWS.
 
-2. Although company policy is that only key-based authentication should be enabled for SSH, at some point password authentication for SSH was enabled on the **Compromised Instance**.  
-	
-	> This misconfiguration is identified in the Inspector scan that is triggered from the GuardDuty finding.
+2. Although company policy is that only key-based authentication should be enabled for SSH, at some point password authentication for SSH was enabled on the **Compromised Instance**.  This misconfiguration is identified in the Inspector scan that is triggered from the GuardDuty finding.
 
 3. The **Malicious Host** performed a brute force SSH password attack against the **Compromised Instance**. The brute force attack is designed to be successful.
 	
-	> **GuardDuty Finding**: UnauthorizedAccess:EC2/SSHBruteForce
+	!!! info "**GuardDuty Finding**: UnauthorizedAccess:EC2/SSHBruteForce"
 
 4. The SSH brute force attack was successful and the attacker was able to log in to the **Compromised Instance**.
 	
-	> Successful login is confirmed in CloudWatch Logs (/threat-detection-wksp/var/log/secure).
+	!!! info "Successful login is confirmed in CloudWatch Logs (/threat-detection-wksp/var/log/secure)."
 
 5. The EC2 Instance that is created in the Module 2 CloudFormation template disabled default encryption on the **Data** bucket.  In addition the CloudFormation template made the **Data** bucket public.  This is used for the Macie part of the investigation in Module 3. We pretend that the attacker made the bucket public and removed the default encryption from the bucket.
 	
-	> **Macie Alert**: S3 Bucket IAM policy grants global read rights
+	!!! info "**Macie Alert**: S3 Bucket IAM policy grants global read rights."
 
 6.  The Compromised Instance also has a cron job that continuously pings the Malicious Host to generate a GuardDuty finding based off the custom threat list.
 	
-	> **GuardDuty Finding**: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom
+	!!! info "**GuardDuty Finding**: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom"
 
 7. The API Calls that generated the API findings come from the **Malicious Host**. The calls use the temp creds from the IAM role for EC2 running on the **Malicious Host**. The GuardDuty findings are generated because the EIP attached to the **Malicious Host** is in a custom threat list. 
 	
-	> **GuardDuty Finding**: Recon:IAMUser/MaliciousIPCaller.Custom
-	
-	> **GuardDuty Finding**: UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom
+	!!! info "**GuardDuty Finding**: Recon:IAMUser/MaliciousIPCaller.Custom or **GuardDuty Finding**: UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom"
 
 8. A number of CloudWatch Events Rules are evoked by the GuardDuty findings and then these trigger various services.
 	1.	**CloudWatch Event Rule**: The generic GuardDuty finding invokes a CloudWatch Event rule which triggers SNS to send an email.
@@ -55,7 +51,7 @@ In **Module 1** of the workshop you setup the initial components of your infrast
 ## Cleanup
 In order to prevent charges to your account we recommend cleaning up the infrastructure that was created. If you plan to keep things running so you can examine the workshop a bit more please remember to do the cleanup when you are done. It is very easy to leave things running in an AWS account, forgot about it, and then accrue charges. 
 
-> You will need to manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order.
+!!! info "You will need to manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order."
 
 1.	Delete the Inspector objects created for the workshop.
 	* Go to the <a href="https://us-west-2.console.aws.amazon.com/inspector" target="_blank">Amazon Inspector</a> console.
@@ -83,7 +79,7 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 	* Click **Delete Stack**.
 	* Repeat the steps above for each stack.
 
-	> You do not need to wait for the first stack to delete before you delete the second one.
+	!!! info "You do not need to wait for the first stack to delete before you delete the second one."
 
 5.	Delete the GuardDuty custom threat list and disable GuardDuty (if you didn't already have it configured before the workshop)
 	* Go to the <a href="https://us-west-2.console.aws.amazon.com/guardduty/" target="_blank">Amazon GuardDuty</a> console.
@@ -123,7 +119,7 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 	* In the upper right-hand corner select the down arrow to the left of the Region and select **Macie General Settings**.
 	* Check the two boxes and click **Disable Amazon Macie**
 
-	> Disabling Macie will actually log you out of the AWS Console so you will need to log back to do any other tasks.
+	!!! info "Disabling Macie will actually log you out of the AWS Console so you will need to log back to do any other tasks."
 
 ## Finished!
 
