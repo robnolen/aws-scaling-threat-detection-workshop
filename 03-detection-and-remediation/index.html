@@ -697,7 +697,7 @@ Outline for 03-detection-and-remediation.md
 <h3 id="detect-and-investigate">Detect and investigate</h3>
 <p>By now you’ve received email alerts from the security services you enabled. Now what? As part of your risk driven detection strategy your organization has decided to prioritize AWS IAM related findings.  </p>
 <ol>
-<li>Sort through your email alerts and identity an alert related to an AWS IAM principals (e.g. <em>Amazon GuardDuty Finding: UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom</em>).</li>
+<li>Sort through your email alerts and identity an alert related to an AWS IAM principal (e.g. <em>Amazon GuardDuty Finding: UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom</em>).</li>
 <li>Copy the <strong><code>Access Key ID</code></strong> from the e-mail alert. </li>
 </ol>
 <p><strong>Explore findings related to the access key (Amazon GuardDuty)</strong></p>
@@ -785,7 +785,7 @@ Filtering on the access key ID like you did previously earlier will only show yo
 </li>
 </ol>
 <p><strong>Restart the EC2 instance to rotate the access keys (EC2)</strong></p>
-<p>All active credentials for the compromised IAM role have been invalidated.  This means the attacker can no longer use those access keys, but it also means that any applications that use this role can't as well.  You knew this going in but decided it was necessary due to the high risk of a compromised IAM access key. In order to ensure the availability of your application you need to refresh the access keys on the instance by stopping and starting the instance. <em>A simple reboot will not change the keys.</em> If you waited the temporary security credential on the instance would be refreshed but this procedure will speed things up. Since you are using AWS Systems Manager for doing administration on your EC2 Instances you can use it to query the metadata to validate that the access keys were rotated after the rotation.</p>
+<p>All active credentials for the compromised IAM role have been invalidated.  This means the attacker can no longer use those access keys, but it also means that any applications that use this role can't as well.  You knew this going in but decided it was necessary due to the high risk of a compromised IAM access key. In order to ensure the availability of your application you need to refresh the access keys on the instance by stopping and starting the instance. <em>A simple reboot will not change the keys.</em> If you waited the temporary security credential on the instance would be refreshed but this procedure will speed things up. Since you are using AWS Systems Manager for doing administration on your EC2 Instances you can use it to query the metadata to validate that the access keys were rotated after the instance restart.</p>
 <ol>
 <li>In the <a href="https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:sort=instanceId" target="_blank">EC2 console</a> <strong>Stop</strong> the Instance named <strong>threat-detection-wksp: Compromised Instance</strong>.</li>
 <li>
