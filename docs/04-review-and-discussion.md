@@ -119,8 +119,6 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 	* In the upper right-hand corner select the down arrow to the left of the Region and select **Macie General Settings**.
 	* Check the two boxes and click **Disable Amazon Macie**
 
-	!!! info "Disabling Macie will actually log you out of the AWS Console so you will need to log back to do any other tasks."
-
 ## Finished!
 
 Congratulations on completing this workshop! This is the workshop's permanent home, so feel free to revisit as often as you'd like.
