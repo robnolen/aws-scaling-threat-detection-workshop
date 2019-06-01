@@ -67,14 +67,14 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 
 3.	Delete all three S3 buckets created by the Module 1 CloudFormation template (the buckets that start with **threat-detection-wksp** and end with **-data**, **-threatlist** and **-logs**)
 	* Go to <a href="https://s3.console.aws.amazon.com/s3/home?region=us-west-2" target="_blank">Amazon S3</a> console.
-	* Click on the appropiate bucket.
+	* Click on the appropriate bucket.
 	* Click **Delete Bucket**.
 	* Copy and paste the name of the bucket (this is an extra verification that you actually want to delete the bucket).
 	* Repeat the steps above for all three buckets.
 
 4.	Delete Module 1 and 2 CloudFormation stacks (**ThreatDetectionWksp-Env-Setup** and **ThreatDetectionWksp-Attacks**).
 	* Go to the <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks?filter=active" target="_blank">AWS CloudFormation</a> console.
-	* Select the appropiate stack.
+	* Select the appropriate stack.
 	* Select **Action**.
 	* Click **Delete Stack**.
 	* Repeat the steps above for each stack.
