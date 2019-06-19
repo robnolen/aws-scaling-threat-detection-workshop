@@ -28,6 +28,7 @@ US West 2 (Oregon) | <a href="https://console.aws.amazon.com/cloudformation/home
 This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a **CREATE_COMPLETE** status as shown below.
 
 ![Stack Complete](./images/02-stack-complete.png)
+
 If this fails with the error message **“Your requested instance type (t2.micro) is not supported in your requested Availability Zone (us-west-2d)…”** and you are using an account provided by AWS during an event, please delete the failed CloudFormation template, then delete the us-west-2d subnet, go to <a href="https://us-west-2.console.aws.amazon.com/vpc/home" target="_blank">![VPC],  select Subnets, check the box of subnet us-west-2d, select Actions from the top menu and Delete subnet (subnets with resources in them cannot be deleted).
 
 ## Architecture overview
