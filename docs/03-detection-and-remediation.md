@@ -27,6 +27,12 @@ Outline for 03-detection-and-remediation.md
 
 # Link to next module
 --> 
+# Agenda
+
+1. Compromised AWS IAM credentials ~ 25-40 mins
+2. Compromised EC2 instance ~ 25-40 mins
+3. Compromised S3 bucket  ~ 15-25 mins
+
 
 # Module 3: Detect, Investigate & Respond
 
