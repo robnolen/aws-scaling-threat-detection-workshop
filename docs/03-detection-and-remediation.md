@@ -32,6 +32,11 @@ Outline for 03-detection-and-remediation.md
 
 Unfortunately, due to a misconfiguration in your environment, an attacker may have been able to gain access to the web server. You are getting alerts from the security services you’ve put in place indicating malicious activity. These alerts include communication with known malicious IP addresses, account reconnaissance, changes to an Amazon S3 bucket configuration, and disabling security configurations. You must identify what activity the intruder may have performed and how they did it so you can block the intruder’s access, remediate the vulnerabilities, and restore the configuration to its proper state.
 
+**Agenda**
+
+1. Investigate 
+2. Respond 
+
 ## Part 1 - Compromised AWS IAM credentials
 
 ### Detect and investigate 
