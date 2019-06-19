@@ -44,8 +44,10 @@ Unfortunately, due to a misconfiguration in your environment, an attacker may ha
 
 By now you’ve received email alerts from the security services you enabled. Now what? As part of your risk driven detection strategy your organization has decided to prioritize AWS IAM related findings.  
 
-1. Sort through your email alerts and identity an alert related to an AWS IAM principal 
+1. Sort through your email alerts and identity an alert related to an AWS IAM principal
+
 	***Amazon GuardDuty Finding: UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom***
+	
 2. Copy the **`Access Key ID`** from the e-mail alert. 
 
 **Explore findings related to the access key (Amazon GuardDuty)**
