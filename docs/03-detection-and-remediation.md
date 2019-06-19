@@ -34,7 +34,7 @@ Unfortunately, due to a misconfiguration in your environment, an attacker may ha
 
 **Agenda**
 
-1. Investigate 
+1. Investigate (IAM Credentials, )
 2. Respond 
 
 ## Part 1 - Compromised AWS IAM credentials
