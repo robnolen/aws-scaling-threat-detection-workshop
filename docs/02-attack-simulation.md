@@ -11,7 +11,7 @@ Now that you have detective and responsive controls setup, you'll be running ano
 
 To initiate the attack simulation you will need to run the module 2 CloudFormation template: 
 
-!!! info "Before you deploy the CloudFormation template feel free to view it <a href="https://github.com/aws-samples/aws-scaling-threat-detection-workshop/blob/master/templates/02-attack-simulation.yml" target="_blank">repo</a href>."
+"Before you deploy the CloudFormation template feel free to view it <a href="https://github.com/aws-samples/aws-scaling-threat-detection-workshop/blob/master/templates/02-attack-simulation.yml" target="_blank">repo</a href>."
 
 Region| Deploy
 ------|-----
