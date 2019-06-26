@@ -83,7 +83,7 @@ To use SH for this we could use the insight "AWS users with the most suspicious 
 	
 	* Use your browser's find function **Control-F** and paste in the `<Access Key ID>` you copied from the e-mail. 
 
-	>  What findings do you see related to this access key ID?
+	>  What findings do you see related to this access-key ID?
 	
 4. Click on one of the findings to see the details.
 
