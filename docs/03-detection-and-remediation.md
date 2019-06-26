@@ -79,7 +79,9 @@ To use SH for this we could use the insight "AWS users with the most suspicious 
 2. The link should take you to the **Investigate** section but if not, click on **Investigate** in the navigation on the left.
 3. Click in the **Add filter** box:
 
-	* Scroll down to **Resource ID**, change the operator to **CONTAINS** and paste in the `<Access Key ID>` you copied from the e-mail. 
+	* Scroll down to **Severity Label**, change the operator to **EQUALS** and type in **MEDIUM**
+	
+	* Use your browser's find function **Control-F** and paste in the `<Access Key ID>` you copied from the e-mail. 
 
 	>  What findings do you see related to this access key ID?
 	
