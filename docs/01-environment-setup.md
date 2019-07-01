@@ -22,7 +22,7 @@ US West 2 (Oregon) | <a href="https://console.aws.amazon.com/cloudformation/home
 	| Email Address | Any valid email address you have access to  |
 	
 3. Once you have entered your parameters click **Next**, 
-4. \(leave everything on this page at the default\) click **Next** again.
+4. Click **Next** again. \(leave everything on this page at the default\)
 
 5. Finally, scroll down and check the box to acknowledge that the template will create IAM roles and click **Create**.
 
@@ -49,8 +49,7 @@ Below are steps to create a rule through the console but you can also find out m
 	
 3.	Click **Create Rule**
 
-4.	Under **Event Pattern** 
-click **Build event pattern to match events by service** and 
+4.	Select **Event Pattern** click the dropdown labeled **Build event pattern to match events by service** and 
 select **Custom event pattern** in the drop down.
 
 Copy and paste in the custom event pattern below:
@@ -68,13 +67,14 @@ Copy and paste in the custom event pattern below:
 }
 ```
 	
-For *Targets*, click **Add Target**, select **Lambda Function**, and then select **threat-detection-wksp-remediation-nacl**. Click **Configure details** at the bottom.
+5. For *Targets* \(on the right of the console)\, click **Add Target**, select **Lambda Function**, and then select **threat-detection-wksp-remediation-nacl**. 
+Click **Configure details** at the bottom.
 
-5.	On the **Configure rule details** screen fill out the **Name** and **Description** (suggestions below).
+6.	On the **Configure rule details** screen fill out the **Name** and **Description** (suggestions below).
     * Name: **threat-detection-wksp-guardduty-finding-ec2-maliciousip**
     * Description: **GuardDuty Finding: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
-6. Click **Create rule**.
-7.	**Optional:** Consider examining the Lambda function to see what it does.  Open the <a href="https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2" target="_blank">Lambda console</a>. Click on the function named **threat-detection-wksp-remediation-nacl**
+7. Click **Create rule**.
+8.	**Optional:** Consider examining the Lambda function to see what it does.  Open the <a href="https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2" target="_blank">Lambda console</a>. Click on the function named **threat-detection-wksp-remediation-nacl**
 
     !!! question "What will the function do when invoked?"
 
