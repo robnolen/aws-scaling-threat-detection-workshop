@@ -32,7 +32,9 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 ![Stack Complete](./images/01-stack-complete.png)
 
-**Do not forget to check your email**, you will get an email from SNS asking you to confirm the Subscription. **Confirm the subscription** so you can receive email alerts from AWS services during the workshop. The email may take 2-3 minutes to arrive, check your spam/junk folder if it doesn’t arrive within that timeframe.
+!! "Do not forget to check your email!"
+
+ You will get an email from SNS asking you to confirm the Subscription. **Confirm the subscription** so you can receive email alerts from AWS services during the workshop. The email may take 2-3 minutes to arrive, check your spam/junk folder if it doesn’t arrive within that timeframe.
 
 ## Setup Amazon CloudWatch event rules and automatic response
 
