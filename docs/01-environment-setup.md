@@ -1,6 +1,6 @@
 # Module 1: Environment build and configuration
 
-In this first module you will be configuring detective and responsive controls for your environment.  You'll be running the first of two CloudFormation templates which will automate the creation of some of these controls and then you will manually configure the rest. Log into the AWS Console if you have not done so already.
+In this first module you will be configuring detective and responsive controls for your environment.  You will be running the first of two CloudFormation templates which will automate the creation of some of these controls and then you will manually configure the rest. Log into the AWS Console if you have not done so already.
 
 ## Deploy the AWS CloudFormation template
 
@@ -21,9 +21,10 @@ US West 2 (Oregon) | <a href="https://console.aws.amazon.com/cloudformation/home
 	| Stack name | ThreatDetectionWksp-Env-Setup  |
 	| Email Address | Any valid email address you have access to  |
 	
-3. Once you have entered your parameters click **Next**, then **Next** again \(leave everything on this page at the default\).
+3. Once you have entered your parameters click **Next**, 
+4. \(leave everything on this page at the default\) click **Next** again.
 
-4. Finally, scroll down and check the box to acknowledge that the template will create IAM roles and click **Create**.
+5. Finally, scroll down and check the box to acknowledge that the template will create IAM roles and click **Create**.
 
 ![IAM Capabilities](./images/iam-capabilities.png)
 
@@ -31,13 +32,13 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 ![Stack Complete](./images/01-stack-complete.png)
 
-You will get an email from SNS asking you to confirm the Subscription. **Confirm the subscription** so you can receive email alerts from AWS services during the Workshop. The Email may take 2-3 minutes to arrive, check your spam/junk folder if it doesn’t arrive within that timeframe.
+**Do not forget to check your email**, you will get an email from SNS asking you to confirm the Subscription. **Confirm the subscription** so you can receive email alerts from AWS services during the workshop. The email may take 2-3 minutes to arrive, check your spam/junk folder if it doesn’t arrive within that timeframe.
 
 ## Setup Amazon CloudWatch event rules and automatic response
 
 The CloudFormation template you just ran created <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html" target="_blank">CloudWatch Event Rules</a> for alerting and response purposes. The steps below will walk you through creating the final rule.  After this you'll have rules in place to receive email notifications and trigger AWS Lambda functions to respond to threats.
 
-Below are steps to create this rule through the console but you can also find out more about doing it programmatically by reviewing the <a href="http://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html" target="_blank">Amazon GuardDuty Documentation</a>.
+Below are steps to create a rule through the console but you can also find out more about doing it programmatically by reviewing the <a href="http://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html" target="_blank">Amazon GuardDuty Documentation</a>.
 
 1.	Open the <a href="https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2" target="_blank">CloudWatch console</a> (us-west-2)
 2.	In the navigation pane on the left, under **Events**, click **Rules**
@@ -46,7 +47,10 @@ Below are steps to create this rule through the console but you can also find ou
 	
 3.	Click **Create Rule**
 
-4.	Under **Event Pattern** click **Build event pattern to match events by service** and select **Custom event pattern** in the drop down.
+4.	Under **Event Pattern** 
+click **Build event pattern to match events by service** and 
+select **Custom event pattern** in the drop down.
+
 Copy and paste in the custom event pattern below:
 	
 ```json
