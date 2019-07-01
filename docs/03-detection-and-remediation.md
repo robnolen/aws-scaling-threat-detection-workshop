@@ -84,9 +84,11 @@ To use SH for this we could use the insight "AWS users with the most suspicious 
 2. The link should take you to the **Investigate** section but if not, click on **Investigate** in the navigation on the left.
 3. Click in the **Add filter** box:
 
-	* Scroll down to **Resource ID**, change the operator to **CONTAINS** and paste in the `<Access Key ID>` you copied from the e-mail. 
+	* Scroll down to **Severity Label**, change the operator to **EQUALS** and type in **MEDIUM**
+	
+	* Use your browser's find function **Control-F** and paste in the `<Access Key ID>` you copied from the e-mail. 
 
-	>  What findings do you see related to this access key ID?
+	>  What findings do you see related to this access-key ID?
 	
 4. Click on one of the findings to see the details.
 
@@ -172,14 +174,18 @@ When investigating the compromised IAM credential you discovered that it was fro
 
 1. Go to the <a href="https://us-west-2.console.aws.amazon.com/securityhub/home?region=us-west-2#/findings" target="_blank">AWS Security Hub</a> console.
 2. The link should take you to the **Findings** section (if not, click on **Findings** in the navigation on the left).
-3. Click in the **Add filter** box:
+	* Add a filter by clicking in the **Add filter** box and scrolling down to **Product Name**, and paste in the word `GuardDuty`.
 
+	* Use your browser's find function **Control-F** and paste in the `<Instance ID>` you copied earlier (from the principal ID you gathered in the GuardDuty finding). 
+	
+	!!! question "What GuardDuty findings do you see related to this instance ID?"
+	
+<!--3. Click in the **Add filter** box:
 	* Scroll down to **Resource ID**, change the operator to **CONTAINS** and paste in the `<Instance ID>` you copied earlier (from the principal ID you gathered in the GuardDuty finding). 
 	* Add another filter by again clicking in the **Add filter** box and scrolling down to **Product Name**, and paste in the word `GuardDuty`.
+-->
 
-	!!! question "What GuardDuty findings do you see related to this instance ID?"
 
-<!--
 1. Go to the [AWS Security Hub](https://us-west-2.console.aws.amazon.com/securityhub/home?region=us-west-2) console.
 2. On the left navigation, click on **Explore Findings**
 3. Add the following filter:
@@ -195,9 +201,13 @@ One of the findings should indicate that the EC2 instance is communicating with 
 Automated responses to threats can do many things. For example, you could have an trigger that helps gather information about the threat that could then be used in the investigation by the security team. With that option in mind, we have a CloudWatch event rule in place that will trigger an <a href="https://aws.amazon.com/inspector/" target="_blank">Amazon Inspector</a> scan of an EC2 instance when GuardDuty detects a particular attack. We will use AWS Security Hub to view the findings from Inspector. We want to determine if the SSH configuration adheres to best practices. 
 
 1. Go to the <a href="https://us-west-2.console.aws.amazon.com/securityhub/home?region=us-west-2#/findings" target="_blank">AWS Security Hub</a> console.
-2. The link should take you to the **Findings** section (if not, click on **Findings** in the navigation on the left). Click in the **Add filter** box:
+2. The link should take you to the **Findings** section (if not, click on **Findings** in the navigation on the left). 
 
-	* Scroll down to **Title**, change the operator to **CONTAINS** and paste in `password authentication over SSH`. 
+	* Use your browser's find function **Control-F** and paste in `password authentication over SSH`
+
+<!-- Click in the **Add filter** box:
+* Scroll down to **Title**, change the operator to **CONTAINS** and paste in `password authentication over SSH`.
+-->
 
 In the results you will see a finding regarding SSH and password authentication for the instance that experienced the SSH brute force attack. 
 
