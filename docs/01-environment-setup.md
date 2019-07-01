@@ -67,7 +67,7 @@ Copy and paste in the custom event pattern below:
 }
 ```
 	
-5. For *Targets* \(on the right of the console)\, click **Add Target**, select **Lambda Function**, and then select **threat-detection-wksp-remediation-nacl**. 
+5. For *Targets*, click **Add Target**, select **Lambda Function**, and then select **threat-detection-wksp-remediation-nacl**. 
 Click **Configure details** at the bottom.
 
 6.	On the **Configure rule details** screen fill out the **Name** and **Description** (suggestions below).
