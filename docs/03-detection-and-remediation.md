@@ -38,7 +38,6 @@ Outline for 03-detection-and-remediation.md
 
 Unfortunately, due to a misconfiguration in your environment, an attacker may have been able to gain access to the web server. You are getting alerts from the security services you’ve put in place indicating malicious activity. These alerts include communication with known malicious IP addresses, account reconnaissance, changes to an Amazon S3 bucket configuration, and disabling security configurations. You must identify what activity the intruder may have performed and how they did it so you can block the intruder’s access, remediate the vulnerabilities, and restore the configuration to its proper state.
 
-**Agenda**
 
 ## Part 1 - Compromised AWS IAM credentials
 
@@ -66,9 +65,9 @@ Now that you have a resource identifier to pivot from you can use Amazon GuardDu
 
 	!!! question "What principal are these credentials associated with?"
 
-  Examining **User type** under **Resource affected** you can see that the access key referenced in this finding is from an IAM assumed role. 
-  Examining **Principal ID** under **Resource affected** you will find two strings separated by a colon. The first is the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids" target="_blank">unique ID</a> for the IAM role and the second is the EC2 instance ID. __(you may have to resize your screen by dragging the middle vertical scrollbar to the left to see the entire text)__. 
-  The **Principal ID** contains a unique ID for the entity making the API request, and when the request is made using temporary security credentials (which is what happens for an assume role call) it also includes a session name. In this case the session name is the EC2 instance ID since the assume role call was done using an IAM role for EC2.
+* Examining **User type** under **Resource affected** you can see that the access key referenced in this finding is from an IAM assumed role. 
+* Examining **Principal ID** under **Resource affected** you will find two strings separated by a colon. The first is the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-unique-ids" target="_blank">unique ID</a> for the IAM role and the second is the EC2 instance ID. __(you may have to resize your screen by dragging the middle vertical scrollbar to the left to see the entire text)__. 
+* The **Principal ID** contains a unique ID for the entity making the API request, and when the request is made using temporary security credentials (which is what happens for an assume role call) it also includes a session name. In this case the session name is the EC2 instance ID since the assume role call was done using an IAM role for EC2.
 
 5. Copy the full **Principal Id** which contains both the unique ID of the role and the session name: **"principalId": "`< unique ID >:< session name >`"**
 
