@@ -2,6 +2,13 @@
 
 In this first module you will be configuring detective and responsive controls for your environment.  You will be running the first of two CloudFormation templates which will automate the creation of some of these controls and then you will manually configure the rest. Log into the AWS Console if you have not done so already.
 
+**Agenda**
+ 
+1. Run the intial CloudFormation Template – 5 min
+2. Confirm SNS subscription in your email - 1 min
+3. Create a CloudWatch Rule - 5 min
+4. Manually Enable detective controls - 5 min
+
 ## Deploy the AWS CloudFormation template
 
 To initiate the scenario and configure your environment you will need to run the module 1 CloudFormation template: 
