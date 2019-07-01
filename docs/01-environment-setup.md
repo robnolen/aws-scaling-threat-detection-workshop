@@ -134,6 +134,6 @@ AWS Security Hub is now enabled and will begin collecting and aggregating findin
 
 Your environment is now configured and ready for operations.  Below is a diagram to depict the detective controls you now have in place.
 
-![Detective Controls](./images/01-diagram-module1.png)
+![Detective Controls](./images/01-diagram-modulev2.png)
 
 After you have successfully setup your environment, you can proceed to the next module.
