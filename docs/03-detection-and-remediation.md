@@ -179,7 +179,7 @@ When investigating the compromised IAM credential you discovered that it was fro
 
 	* Use your browser's find function **Control-F** and paste in the `<Instance ID>` you copied earlier (from the principal ID you gathered in the GuardDuty finding). 
 
-    * Now copy the <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html" target="_blank">Amazon Resource Name (ARN)</a> from the **Resource ID** for the first match. I will look something like this `arn:aws:ec2:us-west-2:166199753942:instance/i-0efc5172a5d7ecc6b`
+    * Now copy the <a href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html" target="_blank">Amazon Resource Name (ARN)</a> from the **Resource ID** for the first match. The ARN will look something like this `arn:aws:ec2:us-west-2:166199753942:instance/i-0efc5172a5d7ecc6b`
 
     * Add one more filter by clicking the **Add filter** box again and selecting **Resource ID** and paste in the ARN from the previous step
 	
@@ -189,15 +189,6 @@ When investigating the compromised IAM credential you discovered that it was fro
 	* Scroll down to **Resource ID**, change the operator to **CONTAINS** and paste in the `<Instance ID>` you copied earlier (from the principal ID you gathered in the GuardDuty finding). 
 	* Add another filter by again clicking in the **Add filter** box and scrolling down to **Product Name**, and paste in the word `GuardDuty`.
 -->
-
-
-1. Go to the [AWS Security Hub](https://us-west-2.console.aws.amazon.com/securityhub/home?region=us-west-2) console.
-2. On the left navigation, click on **Explore Findings**
-3. Add the following filter:
-	* **Keyword: `instance id`** (you obtained the instance ID earlier from the principal ID in one of the findings. The instance ID came from the session name of the principal ID.)
-	* **Provider: GuardDuty**
-
-	>  What findings do you see related to this Instance ID?
 -->
 One of the findings should indicate that the EC2 instance is communicating with an IP address on a threat list (**disallowed IP**) which adds further evidence to the conclusion that the instance has been compromised. The other finding should indicate that a system at a particular IP address is performing an SSH brute force attack against your instance.  You now need to investigate if the SSH brute force attack was successful and if that is what allowed the attacker to gain access to the instance.
 
@@ -207,14 +198,15 @@ Automated responses to threats can do many things. For example, you could have a
 
 1. Go to the <a href="https://us-west-2.console.aws.amazon.com/securityhub/home?region=us-west-2#/findings" target="_blank">AWS Security Hub</a> console.
 2. The link should take you to the **Findings** section (if not, click on **Findings** in the navigation on the left). 
-
+    * Add a filter by clicking in the **Add filter** box and scrolling down to **Product Name**, and paste in the word `Inspector`.
 	* Use your browser's find function **Control-F** and paste in `password authentication over SSH`
+    * The finding may not be on the first page of findings, use the `>` to move to the next page.
 
 <!-- Click in the **Add filter** box:
 * Scroll down to **Title**, change the operator to **CONTAINS** and paste in `password authentication over SSH`.
 -->
 
-In the results you will see a finding regarding SSH and password authentication for the instance that experienced the SSH brute force attack. 
+Click on the finding regarding SSH and password authentication for the instance that experienced the SSH brute force attack and review.
 
 <!--
 1. Go to [AWS Security Hub](https://us-west-2.console.aws.amazon.com/securityhub/) in the AWS Management Console.
@@ -225,9 +217,9 @@ In the results you will see a finding regarding SSH and password authentication 
 4. In the results do you see a finding regarding SSH and password authentication for the instance that experienced the SSH brute force attack? 
 -->
 
-!!! info "If you do not see any findings after awhile, there may have been an issue with your Inspector agent.  Go to the <a href="https://us-west-2.console.aws.amazon.com/inspector" target="_blank">Inspector</a> console, click on **Assessment Templates**, check the template that starts with **threat-detection-wksp**, and click **Run**.  Please allow **15 minutes** for the scan to complete.  You can also look in **Assessment runs** and check the **status**. Feel free to continue through this module and check the results later on." 
+!!! info "If you do not see any findings after a while, there may have been an issue with your Inspector agent.  Go to the <a href="https://us-west-2.console.aws.amazon.com/inspector" target="_blank">Inspector</a> console, click on **Assessment Templates**, check the template that starts with **threat-detection-wksp**, and click **Run**.  Please allow **15 minutes** for the scan to complete.  You can also look in **Assessment runs** and check the **status**. Feel free to continue through this module and check the results later on." 
 
-Based on the findings you should see that password authentication over SSH is configured on the instance. In addition, if you examine some of the other Inspector findings you will see that there are no password complexity restrictions. This means the instance is more susceptible to an SSH brute force attack. 
+After review you should see that password authentication over SSH is configured on the instance. In addition, if you examine some of the other Inspector findings you will see that there are no password complexity restrictions. This means the instance is more susceptible to an SSH brute force attack. 
 
 <!--
 2.  Click on **securityhub default** under **Insight Groups**
@@ -360,7 +352,7 @@ Congratulations! You have successfully remediated the incident and further harde
 ---
 
 Here is a diagram of the attack you just investigated. Numbers 1 & 2 show the SSH brute force attack and successful SSH login. Number 3 shows the S3 bucket changes the attacker made. Number 4 shows the API calls the attacker made with the IAM temporary credentials stolen from the compromised EC2 instance. 
-![03-diagram-attack](./images/03-diagram-attack.png)
+![03-diagram-attack](./images/03-diagram-attack-v2.png)
 
 !!! warning "If you are going through this workshop in a classroom setting then the instructor should start the module 4 presentation soon."
 
