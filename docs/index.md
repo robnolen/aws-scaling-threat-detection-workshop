@@ -1,6 +1,6 @@
 # Overview
 
-This workshop is designed to help you get familiar with AWS Security services and learn how to use them to identify and remediate threats in your environment.  You'll be working with services such as Amazon GuardDuty, Amazon Macie, Amazon Inspector, AWS Security Hub. You will learn how to use these services to investigate threats during and after an attack, set up a notification and response pipeline, and  add additional protections to improve the security posture of your environment.
+This workshop is designed to help you get familiar with AWS Security services and learn how to use them to identify and remediate threats in your environment. You'll be working with services such as Amazon GuardDuty (threat detection), Amazon Macie (discover, classify & protect data), Amazon Inspector (vulnerability & behavior analysis), AWS Security Hub (centralized security view). You will learn how to use these services to investigate threats during and after an attack, set up a notification and response pipeline, and add additional protections to improve the security posture of your environment.
 
 * **Level**: Intermediate
 * **Duration**: 2 - 3 hours

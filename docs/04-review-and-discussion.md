@@ -1,6 +1,9 @@
 # Module 4: Review and Discussion
 
-In the last module we will have a short discussion of the workshop and discuss exactly what occurred. We will also go over a number of questions and then provide instructions on how to clean up the workshop environment to prevent future charges in your AWS account.
+In the last module we will have a short discussion and discuss exactly what occurred. We will also go over a number of questions to test your knowledge.
+
+<!--and then provide instructions on how to clean up the workshop environment to prevent future charges in your AWS account.
+-->
 
 **Agenda**
 
@@ -10,11 +13,15 @@ In the last module we will have a short discussion of the workshop and discuss e
 
 ## Architecture Overview
 Below is a diagram of the overall workshop setup:
-![Part 1 Diagram](./images/04-diagram-module4.png)
+![Part 1 Diagram](./images/03-diagram-attack-v2.png)
 
 ## What is Really Going On?
 
-In **Module 1** of the workshop you setup the initial components of your infrastructure including GuardDuty, Macie and a simple notification and remediation pipeline. Some of the steps required manual configuration but you also ran a CloudFormation template which setup some of the components. In **Module 2** you launched a second CloudFormation template that initiated the attack simulated by this workshop. The CloudFormation template created two EC2 instances. One instance (named **Malicious Host**) had an EIP attached to it that was added to your GuardDuty custom threat list. Although the **Malicious Host** is in the same VPC as the other instance, for the sake of the scenario (and to prevent the need to submit a penetration testing request) we acted as if it is on the Internet and represented the attack's computer. The other instance (named **Compromised Instance**) was your web server and it was taken over by the **Malicious Host**. In **Module 3** you investigated the attack, remediated the damage, and setup some automated remediations for future attacks.  
+In **Module 1** of the workshop you setup the initial components of your infrastructure including detective controls such as GuardDuty, Inspector, SecurityHub as well as simple notification and remediation pipeline. Some of the steps required manual configuration but you also ran a CloudFormation template which setup some of the components. 
+
+In **Module 2** you launched a second CloudFormation template that initiated the attack simulated by this workshop. The CloudFormation template created two EC2 instances. One instance (named **Malicious Host**) had an EIP attached to it that was added to your GuardDuty custom threat list. Although the **Malicious Host** is in the same VPC as the other instance, for the sake of the scenario (and to prevent the need to submit a penetration testing request) we acted as if it is on the Internet and represented the attack's computer. The other instance (named **Compromised Instance**) was your web server and it was taken over by the **Malicious Host**. 
+
+In **Module 3** you investigated the attack, remediated the damage, and setup some automated remediations for future attacks.  
 
 **Here is what occurred in the attack:**
 
@@ -30,7 +37,7 @@ In **Module 1** of the workshop you setup the initial components of your infrast
 	
 	!!! info "Successful login is confirmed in CloudWatch Logs (/threat-detection-wksp/var/log/secure)."
 
-5. The EC2 Instance that is created in the Module 2 CloudFormation template disabled default encryption on the **Data** bucket.  In addition the CloudFormation template made the **Data** bucket public.  This is used for the Macie part of the investigation in Module 3. We pretend that the attacker made the bucket public and removed the default encryption from the bucket.
+5. The EC2 Instance that is created in the **Module** 2 CloudFormation template disabled default encryption on the **Data** bucket.  In addition the CloudFormation template made the **Data** bucket public.  This is used for the Macie part of the investigation in Module 3. We pretend that the attacker made the bucket public and removed the default encryption from the bucket.
 	
 	!!! info "**Macie Alert**: S3 Bucket IAM policy grants global read rights."
 
@@ -51,7 +58,9 @@ In **Module 1** of the workshop you setup the initial components of your infrast
 ## Cleanup
 In order to prevent charges to your account we recommend cleaning up the infrastructure that was created. If you plan to keep things running so you can examine the workshop a bit more please remember to do the cleanup when you are done. It is very easy to leave things running in an AWS account, forgot about it, and then accrue charges. 
 
-!!! info "You will need to manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order."
+!!! info "If you are using this in an instructor led session, with the AWS Event Engine you do not need to run the cleanup steps"
+
+!!! info "If you are running this in your own account. You will need to manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order."
 
 1.	Delete the Inspector objects created for the workshop.
 	* Go to the <a href="https://us-west-2.console.aws.amazon.com/inspector" target="_blank">Amazon Inspector</a> console.

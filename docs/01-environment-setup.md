@@ -1,6 +1,13 @@
 # Module 1: Environment build and configuration
 
-In the first module you will be configuring detective and responsive controls for your environment.  You'll be running the first of two CloudFormation templates which will automate the creation of some of these controls and then you will manually configure the rest.
+In this first module you will be configuring detective and responsive controls for your environment.  You will be running the first of two CloudFormation templates which will automate the creation of some of these controls and then you will manually configure the rest. Log into the AWS Console if you have not done so already.
+
+**Agenda**
+ 
+1. Run the intial CloudFormation Template – 5 min
+2. Confirm SNS subscription in your email - 1 min
+3. Create a CloudWatch Rule - 5 min
+4. Manually Enable detective controls - 5 min
 
 ## Deploy the AWS CloudFormation template
 
@@ -12,18 +19,19 @@ Region| Deploy
 ------|-----
 US West 2 (Oregon) | <a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=ThreatDetectionWksp-Env-Setup&templateURL=https://s3-us-west-2.amazonaws.com/sa-security-specialist-workshops-us-west-2/threat-detect-workshop/staging/01-environment-setup.yml" target="_blank">![Deploy Module 1 in us-west-2](./images/deploy-to-aws.png)</a>
 
-1. Click the **Deploy to AWS** button above.  This will automatically take you to the console to run the template.  
+1. Click the **Deploy to AWS** button above.  This will automatically take you to the console to run the template, click Next to get to the Specify Details page. 
 
 2. On the **Specify Details** section enter the necessary parameters as shown below. 
 
 	| Parameter | Value  |
 	|---|---|
 	| Stack name | ThreatDetectionWksp-Env-Setup  |
-	| Email Address | A ***valid*** email address  |
+	| Email Address | Any valid email address you have access to  |
 	
-3. Once you have entered your parameters click **Next**, then **Next** again \(leave everything on this page at the default\).
+3. Once you have entered your parameters click **Next**, 
+4. Click **Next** again. \(leave everything on this page at the default\)
 
-4. Finally, acknowledge that the template will create IAM roles and click **Create**.
+5. Finally, scroll down and check the box to acknowledge that the template will create IAM roles and click **Create**.
 
 ![IAM Capabilities](./images/iam-capabilities.png)
 
@@ -31,13 +39,15 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 ![Stack Complete](./images/01-stack-complete.png)
 
-You will get an email from SNS asking you to confirm the Subscription. **Confirm the subscription** so you can receive email alerts from AWS services during the Workshop.
+!!! info "Do not forget to check your email!"
+
+ You will get an email from SNS asking you to confirm the Subscription. **Confirm the subscription** so you can receive email alerts from AWS services during the workshop. The email may take 2-3 minutes to arrive, check your spam/junk folder if it doesn’t arrive within that timeframe.
 
 ## Setup Amazon CloudWatch event rules and automatic response
 
-The CloudFormation template you just ran created three <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html" target="_blank">CloudWatch Event Rules</a> for alerting and response purposes. The steps below will walk you through creating the final rule.  After this you'll have rules in place to receive email notifications and trigger AWS Lambda functions to respond to threats.
+The CloudFormation template you just ran created <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html" target="_blank">CloudWatch Event Rules</a> for alerting and response purposes. The steps below will walk you through creating the final rule.  After this you'll have rules in place to receive email notifications and trigger AWS Lambda functions to respond to threats.
 
-Below are steps to create this rule through the console but you can also find out more about doing it programmatically by reviewing the <a href="http://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html" target="_blank">Amazon GuardDuty Documentation</a>.
+Below are steps to create a rule through the console but you can also find out more about doing it programmatically by reviewing the <a href="http://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html" target="_blank">Amazon GuardDuty Documentation</a>.
 
 1.	Open the <a href="https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2" target="_blank">CloudWatch console</a> (us-west-2)
 2.	In the navigation pane on the left, under **Events**, click **Rules**
@@ -46,7 +56,9 @@ Below are steps to create this rule through the console but you can also find ou
 	
 3.	Click **Create Rule**
 
-4.	Under **Event Pattern** click **Build event pattern to match events by service** and select **Custom event pattern** in the drop down.
+4.	Select **Event Pattern** click the dropdown labeled **Build event pattern to match events by service** and 
+select **Custom event pattern** in the drop down.
+
 Copy and paste in the custom event pattern below:
 	
 ```json
@@ -62,13 +74,14 @@ Copy and paste in the custom event pattern below:
 }
 ```
 	
-For *Targets*, click **Add Target**, select **Lambda Function**, and then select **threat-detection-wksp-remediation-nacl**. Click **Configure details**.
+5. For *Targets*, click **Add Target**, select **Lambda Function**, and then select **threat-detection-wksp-remediation-nacl**. 
+Click **Configure details** at the bottom.
 
-5.	On the **Configure rule details** screen fill out the **Name** and **Description** (suggestions below).
+6.	On the **Configure rule details** screen fill out the **Name** and **Description** (suggestions below).
     * Name: **threat-detection-wksp-guardduty-finding-ec2-maliciousip**
     * Description: **GuardDuty Finding: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
-6. Click **Create rule**.
-7.	**Optional:** Consider examining the Lambda function to see what it does.  Open the <a href="https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2" target="_blank">Lambda console</a>. Click on the function named **threat-detection-wksp-remediation-nacl**
+7. Click **Create rule**.
+**Optional:** Consider examining the Lambda function to see what it does.  Open the <a href="https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2" target="_blank">Lambda console</a>. Click on the function named **threat-detection-wksp-remediation-nacl**
 
     !!! question "What will the function do when invoked?"
 
@@ -128,6 +141,6 @@ AWS Security Hub is now enabled and will begin collecting and aggregating findin
 
 Your environment is now configured and ready for operations.  Below is a diagram to depict the detective controls you now have in place.
 
-![Detective Controls](./images/01-diagram-module1.png)
+![Detective Controls](./images/01-diagram-modulev2.png)
 
 After you have successfully setup your environment, you can proceed to the next module.

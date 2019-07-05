@@ -322,7 +322,7 @@ Resources:
     Type: AWS::EC2::Instance
     Properties: 
       IamInstanceProfile: !Ref MaliciousInstanceProfile
-      InstanceType: t2.micro
+      InstanceType: t3.medium
       ImageId: 
         Fn::FindInMap: 
           - RegionMap
@@ -535,7 +535,7 @@ Resources:
   CompromisedInstance: 
     Type: AWS::EC2::Instance
     Properties: 
-      InstanceType: t2.micro
+      InstanceType: t3.medium
       IamInstanceProfile: !Ref CompromisedInstanceProfile
       # KeyName: !Ref KeyName
       ImageId: 
