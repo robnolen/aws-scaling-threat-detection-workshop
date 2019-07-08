@@ -18,7 +18,7 @@ For this Workshop you will have a single instance setup in the us-west-2 region.
 
 For this Workshop you will have a simple setup with a single instance setup in the us-west-2 region. As this was a “lift-and-shift” migration for piloting, you have yet to build redundancy into your application, so you have a single public-facing web server that is accessed through an internet gateway and retrieves static content from an S3 bucket.
 
-![Architecture](./images/diagram-basic-arch.png "Workload Architecture")
+![Architecture](./images/diagram-basic-arch-v2.png "Workload Architecture")
 
 ## Presentation deck
 [Workshop Presentation Deck](./threat-detect-workshop-presentation.pdf)
