@@ -393,13 +393,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#setup-amazon-macie-for-data-discovery-classification" class="md-nav__link">
-    Setup Amazon Macie for data discovery &amp; classification
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#enable-aws-security-hub" class="md-nav__link">
     Enable AWS Security Hub
   </a>
@@ -521,13 +514,6 @@
         <li class="md-nav__item">
   <a href="#enable-amazon-guardduty" class="md-nav__link">
     Enable Amazon GuardDuty
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup-amazon-macie-for-data-discovery-classification" class="md-nav__link">
-    Setup Amazon Macie for data discovery &amp; classification
   </a>
   
 </li>
@@ -702,28 +688,6 @@ Click <strong>Configure details</strong> at the bottom.</p>
 </li>
 </ol>
 <p>GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC flow logs, and DNS Query logs for threats in your environment.</p>
-<h2 id="setup-amazon-macie-for-data-discovery-classification">Setup Amazon Macie for data discovery &amp; classification</h2>
-<p>Macie is also used for automatically discovering and classifying sensitive data.  Now that Macie is enabled, setup an integration to classify data in your S3 bucket.</p>
-<ol>
-<li>
-<p>In the Amazon Macie console click on <strong>Integrations</strong> on the left navigation.</p>
-</li>
-<li>
-<p>Find your AWS account ID (there should be only one) and click <strong>Select</strong> </p>
-</li>
-<li>
-<p>Click <strong>Add</strong> then on the next screen click the check box next to the S3 bucket that ends with <strong>“-data”</strong>. Click <strong>Add</strong></p>
-</li>
-<li>
-<p>Leave the options here at the default, click <strong>Review</strong>.</p>
-</li>
-<li>
-<p>On the next screen click <strong>Start Classification</strong>. </p>
-</li>
-<li>
-<p>Finally click <strong>Done</strong>. Macie is now enabled and has begun to discover, classify and protect your data.</p>
-</li>
-</ol>
 <h2 id="enable-aws-security-hub">Enable AWS Security Hub</h2>
 <p>Now that all of your detective controls have been configured you need to enable <a href="https://aws.amazon.com/security-hub/" target="_blank">AWS Security Hub</a>, which will provide you with a comprehensive view of the security and compliance of your AWS environment.</p>
 <ol>
