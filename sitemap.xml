@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>https://scaling-threat-detection.awssecworkshops.com/</loc>
+     <loc>https://robnolen.github.io/</loc>
      <lastmod>2019-09-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://scaling-threat-detection.awssecworkshops.com/01-environment-setup/</loc>
+     <loc>https://robnolen.github.io/01-environment-setup/</loc>
      <lastmod>2019-09-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://scaling-threat-detection.awssecworkshops.com/02-attack-simulation/</loc>
+     <loc>https://robnolen.github.io/02-attack-simulation/</loc>
      <lastmod>2019-09-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://scaling-threat-detection.awssecworkshops.com/03-detection-and-remediation/</loc>
+     <loc>https://robnolen.github.io/03-detection-and-remediation/</loc>
      <lastmod>2019-09-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://scaling-threat-detection.awssecworkshops.com/04-review-and-discussion/</loc>
+     <loc>https://robnolen.github.io/04-review-and-discussion/</loc>
      <lastmod>2019-09-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://scaling-threat-detection.awssecworkshops.com/contribute/</loc>
+     <loc>https://robnolen.github.io/contribute/</loc>
      <lastmod>2019-09-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://scaling-threat-detection.awssecworkshops.com/license/</loc>
+     <loc>https://robnolen.github.io/license/</loc>
      <lastmod>2019-09-22</lastmod>
      <changefreq>daily</changefreq>
     </url>
