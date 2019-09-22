@@ -97,17 +97,6 @@ The next step is to enable Amazon GuardDuty, which will continuously monitor you
 
 GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC flow logs, and DNS Query logs for threats in your environment.
 
-## Enable Amazon Macie
-
-Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Macie.  Macie is a security service that will continuously monitor data access activity for anomalies and generate alerts when it detects risk of unauthorized access or inadvertent data leaks.
-
-1.	Go to the <a href="https://us-west-2.redirection.macie.aws.amazon.com/" target="_blank">Amazon Macie</a> console (us-west-2).
-
-2.	Click **Get Started**.
-
-3.	Macie will create a service-linked role when you enable it. If you would like to see the permissions that the role will have you can click the **View service role permissions**.
-
-4.	Click **Enable Macie**.
 
 ## Setup Amazon Macie for data discovery & classification
 
