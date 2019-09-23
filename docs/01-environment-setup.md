@@ -98,22 +98,6 @@ The next step is to enable Amazon GuardDuty, which will continuously monitor you
 GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC flow logs, and DNS Query logs for threats in your environment.
 
 
-## Setup Amazon Macie for data discovery & classification
-
-Macie is also used for automatically discovering and classifying sensitive data.  Now that Macie is enabled, setup an integration to classify data in your S3 bucket.
-
-1.	In the Amazon Macie console click on **Integrations** on the left navigation.
-
-3.	Find your AWS account ID (there should be only one) and click **Select** 
-
-4.	Click **Add** then on the next screen click the check box next to the S3 bucket that ends with **“-data”**. Click **Add**
-
-5. Leave the options here at the default, click **Review**.
-
-6. On the next screen click **Start Classification**. 
-
-6. Finally click **Done**. Macie is now enabled and has begun to discover, classify and protect your data.
-
 ## Enable AWS Security Hub
 
 Now that all of your detective controls have been configured you need to enable <a href="https://aws.amazon.com/security-hub/" target="_blank">AWS Security Hub</a>, which will provide you with a comprehensive view of the security and compliance of your AWS environment.

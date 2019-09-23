@@ -21,7 +21,6 @@ Outline for 03-detection-and-remediation.md
 ## Part 3 - Compromised S3 security
 ### Detect and Investigate 
 #### Investigate any S3 related findings (securityhub)
-#### Check if sensitive data was involved (Macie)
 ### Respond
 #### Fix the S3 data bucket permissions and encryption (S3)
 
@@ -31,7 +30,6 @@ Outline for 03-detection-and-remediation.md
 
 1. Compromised AWS IAM credentials ~ 25-40 mins
 2. Compromised EC2 instance ~ 25-40 mins
-3. Compromised S3 bucket  ~ 15-25 mins
 
 
 # Module 3: Detect, Investigate & Respond
@@ -264,88 +262,7 @@ The active session from the attacker was automatically stopped by an update to t
 6. Click **Save**
 
 
-## Part 3 - Compromised S3 bucket
 
-### Detect and investigate 
-
-Now that we know the SSH brute force attack was successful and we disabled the IAM credentials that were stolen, we need to determine if anything else occurred. One step we could take here is to examine the IAM policy attached the IAM role that generated the temp credentials. We notice in the policy that there are permissions relating to the Amazon S3 service so that is something to keep in mind as you continue the investigation. 
-
-Here is a truncated view of the policy from the IAM role attached to the compromised EC2 instance:
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::threat-detection-wksp-ACCOUNT_ID-us-west-2-gd-threatlist/*",
-            "Effect": "Allow"
-        },
-        {
-            "Action": [
-                "s3:*"
-            ],
-            "Resource": "arn:aws:s3:::threat-detection-wksp-ACCOUNT_ID-us-west-2-data/*",
-            "Effect": "Allow"
-        },
-        {
-            "Action": [
-                "s3:*"
-            ],
-            "Resource": "arn:aws:s3:::threat-detection-wksp-ACCOUNT_ID-us-west-2-data",
-            "Effect": "Allow"
-        }
-    ]
-}
-```
-
-**Investigate any S3 related findings (AWS Security Hub)**
-
-There are many ways to approach this next step. We are going to start with a Security Hub insight that may be helpful in situations like this. This is not the only way you could approach this but it can definitely save time initially as you investigate the full repercussions of an attack.
-
-1. Go to <a href="https://us-west-2.console.aws.amazon.com/securityhub/home?region=us-west-2#/insights" target="_blank">AWS Security Hub</a> in the AWS Management Console.
-2. The link should take you to the **Insights** section (if not, click on ** Insights** in the navigation on the left).
-3. Click in the **Filter insights** box and type **`Top S3`** which will display the built in Insight "Top S3 buckets by counts of findings." Click on that Insight. 
-4. There should be one that with **threat-detection-wksp-** and ends in **-data**. Click on that. 
-5. Evaluate the Macie findings shown under the Insight.
-
-This **Security Hub** Insight is one way of determining what an attacker may have done. It is not going to help in every situation though. 
- 
-**Check if sensitive data was involved (Macie)**
-
-At this point you know how the attacker was able to get into your systems and a general idea of what they did. In the previous step you  determined that the S3 bucket that starts with **threat-detection-wksp-** and ends in **-data** has an ACL that grants global read rights. We will now check if there is any sensitive and business-critical data in the bucket and take a closer at the Macie Alerts.
-
-1. Go to the <a href="https://mt.us-west-2.macie.aws.amazon.com/" target="_blank">Amazon Macie</a> in the AWS Management console.
-
-2.  Click **Dashboard** on the left navigation.  You should see the following data classifications:
-    ![Macie Classification](./images/03-macie-data.png)
-
-    !!! info "You can slide the risk slider to filter data classifications based on risk levels."
-
-3. Above the risk slider, click the icon for **S3 public objects and buckets**. The icon will be in the shape of a globe but you can also hover over the icons to find the right one. 
-    ![Public Objects Button](./images/03-macie-public-objects-button.png)
-
-4. Click the magnifying glass to the left of the bucket name listed.
-5. Check if any of the data in the bucket is considered a high risk.  Look for the **Object PII priority** field and **Object risk level** field.
-    
-6.  Verify if any of the data is unencrypted.  Look for the **Object encryption** field. 
-
-    !!! question "Does a portion of the blue bar indicate that encryption is set to none?."
-    
-### Respond
-
-**Fix the permissions and encryption on the bucket (S3)**
-
-In the previous step we determined that the S3 bucket that starts with **threat-detection-wksp-** and ends in **-data** has sensitive data and some of that data is unencrypted. We also know that the bucket grants global read rights. We need to manually fix these issues. 
-
-1. First we will fix the permissions.  Go to <a href="https://us-west-2.console.aws.amazon.com/s3/" target="_blank">Amazon S3</a> in the AWS Management Console. 	
-3. Find the bucket that starts with **threat-detection-wksp-** and ends in **-data**
-4. Click on the **Permissions** tab then click on **ACL Control List**
-5. Under **Public access** click on the radio button next to **Everyone**. Uncheck **List objects** then click **Save**.
-7. Now we need to fix the encryption.  In the same bucket, click on the **Properties** tab then click on **Default encryption**
-8. Set the encryption to AWS-KMS. Select the **aws/s3** key. Finally click **Save**.
-
-    !!! info "What impact does enabling default encryption have on existing objects in the bucket?"
  
 Congratulations! You have successfully remediated the incident and further hardened your environment. This is obviously a simulation and we can not cover every aspect of the response function in the short time allotted but hopefully this gave you an idea of the capabilities available on AWS to detect, investigate and respond to threats and attacks. 
 
